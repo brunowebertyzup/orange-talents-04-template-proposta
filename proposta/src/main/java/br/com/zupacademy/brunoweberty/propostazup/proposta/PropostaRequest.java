@@ -17,25 +17,28 @@ public class PropostaRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	private String email;
-	
+
 	@NotBlank
 	@CPForCNPJ
 	private String documento;
-	
+
 	@NotBlank
 	private String endereco;
-	
-	@NotNull @Positive
+
+	@NotNull
+	@Positive
 	private BigDecimal salario;
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatusProposta statusProposta;
+
+	private String numeroCartao;
 
 	public PropostaRequest(String nome, String email, String documento, String endereco, BigDecimal salario) {
 		this.nome = nome;
@@ -44,7 +47,7 @@ public class PropostaRequest {
 		this.endereco = endereco;
 		this.salario = salario;
 	}
-	
+
 	public PropostaRequest(Proposta p) {
 		this.id = p.getId();
 		this.nome = p.getNome();
@@ -53,8 +56,9 @@ public class PropostaRequest {
 		this.endereco = p.getEndereco();
 		this.salario = p.getSalario();
 		this.statusProposta = p.getStatusProposta();
+		this.numeroCartao = p.getNumeroCartao();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -78,9 +82,13 @@ public class PropostaRequest {
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	
+
 	public StatusProposta getStatusProposta() {
 		return statusProposta;
+	}
+
+	public String getNumeroCartao() {
+		return numeroCartao;
 	}
 
 	public Proposta converterEmProposta() {

@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +65,15 @@ public class PropostaController {
 			proposta.setStatusProposta(StatusProposta.NAO_ELEGIVEL);
 			transacao.atualizaEComita(proposta);
 		}
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<PropostaRequest> detalhar(@PathVariable Long id) {
+		Optional<Proposta> possivelProposta = propostaRepository.findById(id);
+		if (possivelProposta.isPresent()) {
+			return ResponseEntity.ok(new PropostaRequest(possivelProposta.get()));
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 }

@@ -22,7 +22,7 @@ public class CartaoScheduler {
 	@Autowired
 	ExecutorTransacao transacao;
 	
-	@Scheduled(fixedRateString = "10000")
+	@Scheduled(fixedRateString = "100000")
 	public void verificaSituacaoDoCartao() {
 		
 		var propostasAprovadas = propostaRepository.buscarPropostasElegiveisSemCartao();
