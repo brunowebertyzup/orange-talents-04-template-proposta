@@ -28,6 +28,8 @@ public class Proposta {
 	
 	private StatusProposta statusProposta = StatusProposta.NAO_ANALISADO;
 	
+	private String numeroCartao;
+	
 	@Deprecated
 	public Proposta() {
 	}
@@ -66,6 +68,38 @@ public class Proposta {
 	
 	public StatusProposta getStatusProposta() {
 		return statusProposta;
+	}
+	
+	public String getNumeroCartao() {
+		return numeroCartao;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setSalario(BigDecimal salario) {
+		this.salario = salario;
+	}
+
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
 	}
 
 	public void setStatusProposta(StatusProposta statusProposta) {
