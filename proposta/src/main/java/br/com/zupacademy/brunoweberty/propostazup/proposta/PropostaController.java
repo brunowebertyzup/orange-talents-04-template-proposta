@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.zupacademy.brunoweberty.propostazup.feign.PostClient;
-import br.com.zupacademy.brunoweberty.propostazup.feign.PostRequest;
-import br.com.zupacademy.brunoweberty.propostazup.feign.PostResponse;
+import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoClient;
+import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoRequest;
+import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoResponse;
 import br.com.zupacademy.brunoweberty.propostazup.feign.ResultadoSolicitacao;
 import br.com.zupacademy.brunoweberty.propostazup.utils.ExecutorTransacao;
 import feign.FeignException.UnprocessableEntity;
@@ -32,7 +32,7 @@ public class PropostaController {
 	PropostaRepository propostaRepository;
 	
 	@Autowired
-	PostClient verificarProposta;
+	AnaliseSolicitacaoClient verificarProposta;
 	
 	@Autowired
 	ExecutorTransacao transacao;
@@ -52,10 +52,19 @@ public class PropostaController {
 		return ResponseEntity.created(uri).body(new PropostaRequest(proposta));
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<PropostaRequest> detalhar(@PathVariable Long id) {
+		Optional<Proposta> possivelProposta = propostaRepository.findById(id);
+		if (possivelProposta.isPresent()) {
+			return ResponseEntity.ok(new PropostaRequest(possivelProposta.get()));
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
 	private void analisaProposta(Proposta proposta) {
-		PostRequest postRequest = proposta.converterEmPostRequest();
+		AnaliseSolicitacaoRequest postRequest = proposta.converterEmPostRequest();
 		try {
-			PostResponse post = verificarProposta.postProposta(postRequest);
+			AnaliseSolicitacaoResponse post = verificarProposta.postProposta(postRequest);
 			if(post.getResultadoSolicitacao().equals(ResultadoSolicitacao.SEM_RESTRICAO)) {
 				proposta.setStatusProposta(StatusProposta.ELEGIVEL);
 				transacao.atualizaEComita(proposta);
@@ -66,14 +75,4 @@ public class PropostaController {
 			transacao.atualizaEComita(proposta);
 		}
 	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<PropostaRequest> detalhar(@PathVariable Long id) {
-		Optional<Proposta> possivelProposta = propostaRepository.findById(id);
-		if (possivelProposta.isPresent()) {
-			return ResponseEntity.ok(new PropostaRequest(possivelProposta.get()));
-		}
-		return ResponseEntity.notFound().build();
-	}
-	
 }

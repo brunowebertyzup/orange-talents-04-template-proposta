@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -20,7 +21,8 @@ public class PropostaRequest {
 
 	@NotBlank
 	private String nome;
-
+	
+	@Email
 	@NotBlank
 	private String email;
 

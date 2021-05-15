@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import br.com.zupacademy.brunoweberty.propostazup.feign.PostRequest;
+import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoRequest;
 
 @Entity
 public class Proposta {
@@ -106,7 +106,7 @@ public class Proposta {
 		this.statusProposta = statusProposta;
 	}
 
-	public PostRequest converterEmPostRequest() {
-		return new PostRequest(this.documento, this.nome, this.id.toString());
+	public AnaliseSolicitacaoRequest converterEmPostRequest() {
+		return new AnaliseSolicitacaoRequest(this.documento, this.nome, this.id.toString());
 	}
 }
