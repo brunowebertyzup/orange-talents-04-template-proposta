@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoClient;
-import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoRequest;
-import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoResponse;
-import br.com.zupacademy.brunoweberty.propostazup.feign.ResultadoSolicitacao;
+import br.com.zupacademy.brunoweberty.propostazup.feignProposta.AnaliseSolicitacaoClient;
+import br.com.zupacademy.brunoweberty.propostazup.feignProposta.AnaliseSolicitacaoRequest;
+import br.com.zupacademy.brunoweberty.propostazup.feignProposta.AnaliseSolicitacaoResponse;
+import br.com.zupacademy.brunoweberty.propostazup.feignProposta.ResultadoSolicitacao;
 import br.com.zupacademy.brunoweberty.propostazup.utils.ExecutorTransacao;
 import feign.FeignException.UnprocessableEntity;
 

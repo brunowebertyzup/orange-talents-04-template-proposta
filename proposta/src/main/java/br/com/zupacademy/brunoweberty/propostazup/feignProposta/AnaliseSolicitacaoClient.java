@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.feign;
+package br.com.zupacademy.brunoweberty.propostazup.feignProposta;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;

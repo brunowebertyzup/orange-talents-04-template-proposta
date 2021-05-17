@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.feign;
+package br.com.zupacademy.brunoweberty.propostazup.feignProposta;
 
 public class AnaliseSolicitacaoRequest {
 

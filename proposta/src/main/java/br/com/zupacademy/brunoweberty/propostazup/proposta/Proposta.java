@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoRequest;
+import br.com.zupacademy.brunoweberty.propostazup.cartao.Cartao;
+import br.com.zupacademy.brunoweberty.propostazup.feignProposta.AnaliseSolicitacaoRequest;
 
 @Entity
 public class Proposta {
@@ -28,7 +30,8 @@ public class Proposta {
 	
 	private StatusProposta statusProposta = StatusProposta.NAO_ANALISADO;
 	
-	private String numeroCartao;
+	@OneToOne
+	private Cartao cartao;
 	
 	@Deprecated
 	public Proposta() {
@@ -70,36 +73,12 @@ public class Proposta {
 		return statusProposta;
 	}
 	
-	public String getNumeroCartao() {
-		return numeroCartao;
+	public Cartao getCartao() {
+		return cartao;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
-	}
-
-	public void setNumeroCartao(String numeroCartao) {
-		this.numeroCartao = numeroCartao;
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 
 	public void setStatusProposta(StatusProposta statusProposta) {

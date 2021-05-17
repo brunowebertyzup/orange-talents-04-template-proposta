@@ -1,17 +1,16 @@
-package br.com.zupacademy.brunoweberty.propostazup.cartao;
+package br.com.zupacademy.brunoweberty.propostazup.feignCartao;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import br.com.zupacademy.brunoweberty.propostazup.feign.AnaliseSolicitacaoRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "cartao", url = "http://localhost:8888")
 @Component
 public interface CartaoClient {
 
-	@PostMapping("/api/cartoes")
-	CartaoResponse postCartao(AnaliseSolicitacaoRequest proposta);
+	@GetMapping("/api/cartoes?idProposta={idProposta}")
+	CartaoResponse getCartao(@PathVariable Long idProposta);
 
 }
 

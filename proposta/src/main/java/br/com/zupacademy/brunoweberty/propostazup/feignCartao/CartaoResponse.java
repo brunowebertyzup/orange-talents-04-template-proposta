@@ -1,4 +1,6 @@
-package br.com.zupacademy.brunoweberty.propostazup.cartao;
+package br.com.zupacademy.brunoweberty.propostazup.feignCartao;
+
+import br.com.zupacademy.brunoweberty.propostazup.cartao.Cartao;
 
 public class CartaoResponse {
 	
@@ -24,5 +26,9 @@ public class CartaoResponse {
 
 	public String getIdProposta() {
 		return idProposta;
+	}
+	
+	public Cartao converterEmCartao() {
+		return new Cartao(this.id, this.titular);
 	}
 }

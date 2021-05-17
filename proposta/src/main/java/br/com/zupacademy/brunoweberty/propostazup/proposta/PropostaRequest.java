@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import br.com.zupacademy.brunoweberty.propostazup.cartao.Cartao;
 import br.com.zupacademy.brunoweberty.propostazup.validations.annotations.CPForCNPJ;
 
 public class PropostaRequest {
@@ -39,8 +40,8 @@ public class PropostaRequest {
 
 	@Enumerated(EnumType.STRING)
 	private StatusProposta statusProposta;
-
-	private String numeroCartao;
+	
+	private Cartao cartao;
 
 	public PropostaRequest(String nome, String email, String documento, String endereco, BigDecimal salario) {
 		this.nome = nome;
@@ -58,7 +59,7 @@ public class PropostaRequest {
 		this.endereco = p.getEndereco();
 		this.salario = p.getSalario();
 		this.statusProposta = p.getStatusProposta();
-		this.numeroCartao = p.getNumeroCartao();
+		this.cartao = p.getCartao();
 	}
 
 	public Long getId() {
@@ -89,8 +90,12 @@ public class PropostaRequest {
 		return statusProposta;
 	}
 
-	public String getNumeroCartao() {
-		return numeroCartao;
+	public Cartao getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 
 	public Proposta converterEmProposta() {

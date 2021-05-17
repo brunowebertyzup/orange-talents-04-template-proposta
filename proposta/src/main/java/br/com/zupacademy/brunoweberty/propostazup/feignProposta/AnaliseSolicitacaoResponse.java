@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.feign;
+package br.com.zupacademy.brunoweberty.propostazup.feignProposta;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
