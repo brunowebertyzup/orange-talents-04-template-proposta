@@ -20,8 +20,6 @@ public class BiometriaRequest {
 		super();
 	}
 
-
-
 	public Biometria converterEmBiometria(Cartao cartao, byte[] biometria) {
 		String stringBiometria = Base64.getEncoder().encodeToString(biometria);
 		return new Biometria(cartao, stringBiometria);
