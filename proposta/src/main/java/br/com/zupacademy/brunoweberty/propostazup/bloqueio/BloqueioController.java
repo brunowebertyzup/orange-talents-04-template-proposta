@@ -27,7 +27,6 @@ public class BloqueioController {
     @Autowired ExecutorTransacao transacao;
     @Autowired CartaoClient cartaoClient;
     @Autowired CartaoFeignHandler cartaoFeignHandler;
-
 	
 	@PostMapping("/{idCartao}")
     public ResponseEntity<?> novoBloqueio(@PathVariable("idCartao") Long idCartao,
