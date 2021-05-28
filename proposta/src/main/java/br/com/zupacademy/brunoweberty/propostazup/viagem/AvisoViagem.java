@@ -20,7 +20,7 @@ public class AvisoViagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String destino;
-	private LocalDate dataTermino;
+	private LocalDate validoAte;
 	private LocalDateTime criadoEm = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 	private String ipSolicitante;
 	private String agenteDoUsuario;
@@ -31,10 +31,10 @@ public class AvisoViagem {
 	public AvisoViagem() {
 	}
 
-	public AvisoViagem(String destino, LocalDate dataTermino, String ipSolicitante, String agenteDoUsuario,
+	public AvisoViagem(String destino, LocalDate validoAte, String ipSolicitante, String agenteDoUsuario,
 			Cartao cartao) {
 		this.destino = destino;
-		this.dataTermino = dataTermino;
+		this.validoAte = validoAte;
 		this.ipSolicitante = ipSolicitante;
 		this.agenteDoUsuario = agenteDoUsuario;
 		this.cartao = cartao;
@@ -48,8 +48,12 @@ public class AvisoViagem {
 		return destino;
 	}
 
-	public LocalDate getDataTermino() {
-		return dataTermino;
+	public LocalDate getValidoAte() {
+		return validoAte;
+	}
+
+	public void setValidoAte(LocalDate validoAte) {
+		this.validoAte = validoAte;
 	}
 
 	public LocalDateTime getCriadoEm() {

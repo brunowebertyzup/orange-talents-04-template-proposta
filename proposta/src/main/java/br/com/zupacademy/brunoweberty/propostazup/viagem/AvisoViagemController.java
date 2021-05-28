@@ -1,6 +1,5 @@
 package br.com.zupacademy.brunoweberty.propostazup.viagem;
 
-import java.net.URI;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +18,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.zupacademy.brunoweberty.propostazup.cartao.Cartao;
 import br.com.zupacademy.brunoweberty.propostazup.cartao.CartaoRepository;
+import br.com.zupacademy.brunoweberty.propostazup.feignCartao.CartaoClient;
+import br.com.zupacademy.brunoweberty.propostazup.feignCartao.CartaoFeignHandler;
 import br.com.zupacademy.brunoweberty.propostazup.utils.ExecutorTransacao;
 
 @RestController
@@ -27,6 +28,8 @@ public class AvisoViagemController {
 	
 	@Autowired CartaoRepository cartaoRepository;
     @Autowired ExecutorTransacao transacao;
+	@Autowired CartaoClient cartaoClient;
+	@Autowired CartaoFeignHandler cartaoFeignHandler;
 	
 	@PostMapping("/{idCartao}")
 	@Transactional
@@ -38,10 +41,13 @@ public class AvisoViagemController {
 		Optional<Cartao> possivelCartao = cartaoRepository.findById(idCartao);
 		return possivelCartao.map(cartaoEncontrado -> {
 			AvisoViagem avisoViagem = request.toModel(cartaoEncontrado, servletRequest.getRemoteAddr(), userAgent);
-			transacao.salvaEComita(avisoViagem);
-			URI uri = uriBuilder.path("/viagens/{id}").buildAndExpand(avisoViagem.getId()).toUri();
-            return ResponseEntity.ok(uri);
+			cartaoFeignHandler.executa(() -> {
+				cartaoClient.emitirAviso(cartaoEncontrado.getNumeroCartao(), request);
+                transacao.salvaEComita(avisoViagem);
+                return null;
+            }, "Já existe uma viagem encerrando nesta data.");
+			return ResponseEntity.ok().build();
         }).orElseGet(() -> ResponseEntity.notFound().build());
 	}
-	
+
 }

@@ -14,11 +14,11 @@ public class AvisoViagemRequest {
 	@NotBlank
 	private String destino;
 	@NotNull
-	private LocalDate dataTermino;
+	private LocalDate validoAte;
 
-	public AvisoViagemRequest(String destino, LocalDate dataTermino) {
+	public AvisoViagemRequest(String destino, LocalDate validoAte) {
 		this.destino = destino;
-		this.dataTermino = dataTermino;
+		this.validoAte = validoAte;
 	}
 
 	public String getDestino() {
@@ -26,19 +26,19 @@ public class AvisoViagemRequest {
 	}
 
 	public LocalDate getDataTermino() {
-		return dataTermino;
+		return validoAte;
 	}
 
 	@Override
 	public String toString() {
-		return "AvisoViagemRequest{" + "destino='" + destino + '\'' + ", dataTermino=" + dataTermino + '}';
+		return "AvisoViagemRequest{" + "destino='" + destino + '\'' + ", validoAte=" + validoAte + '}';
 	}
 
 	public AvisoViagem toModel(Cartao cartao, String ipCliente, String agenteUsuario) {
 		Assert.notNull(cartao, "Cartão não deveria ser nulo");
 		Assert.hasLength(ipCliente, "IP do Cliente não deveria ser vazio");
 		Assert.hasLength(agenteUsuario, "User Agent não deveria ser vazio.");
-		return new AvisoViagem(this.destino, this.dataTermino, ipCliente, agenteUsuario, cartao);
+		return new AvisoViagem(this.destino, this.validoAte, ipCliente, agenteUsuario, cartao);
 	}
 
 }
