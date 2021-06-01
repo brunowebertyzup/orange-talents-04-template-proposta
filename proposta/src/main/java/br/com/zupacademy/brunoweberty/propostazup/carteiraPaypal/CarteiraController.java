@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.carteira;
+package br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal;
 
 import java.net.URI;
 import java.util.List;
@@ -46,15 +46,12 @@ public class CarteiraController {
 		}
 		
 		return possivelCartao.map(cartaoEncontrado -> {
-			
 			Carteira carteira = request.toModel(cartaoEncontrado);
-			
-			//return 
 			cartaoFeignHandler.executa(() -> {
 				cartaoClient.associarCarteira(cartaoEncontrado.getNumeroCartao(), request);
 					transacao.salvaEComita(carteira);
 					return null;
-            }, "Já existe um cartão associado a essa carteira.");
+            }, "Já existe um cartão associado a essa carteira");
 			
 			URI uri = uriBuilder.path("/viagens/{id}").buildAndExpand(carteira.getId()).toUri();
 			return ResponseEntity.created(uri).build();

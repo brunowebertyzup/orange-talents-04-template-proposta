@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.carteira;
+package br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

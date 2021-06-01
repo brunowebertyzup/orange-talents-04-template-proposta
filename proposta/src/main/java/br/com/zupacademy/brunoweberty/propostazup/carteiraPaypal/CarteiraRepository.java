@@ -1,4 +1,4 @@
-package br.com.zupacademy.brunoweberty.propostazup.carteira;
+package br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal;
 
 import java.util.List;
 

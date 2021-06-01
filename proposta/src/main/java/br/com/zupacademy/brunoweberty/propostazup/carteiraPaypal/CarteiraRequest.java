@@ -1,7 +1,10 @@
-package br.com.zupacademy.brunoweberty.propostazup.carteira;
+package br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.util.Assert;
 
@@ -12,12 +15,13 @@ public class CarteiraRequest {
 	@NotBlank
 	@Email
 	private String email;
-	private String carteira;
+	@NotNull @Enumerated(EnumType.STRING)
+	private TipoCarteira carteira;
 
 	public CarteiraRequest() {
 	}
 
-	public CarteiraRequest(String email, String carteira) {
+	public CarteiraRequest(String email, TipoCarteira carteira) {
 		this.email = email;
 		this.carteira = carteira;
 	}
@@ -26,8 +30,12 @@ public class CarteiraRequest {
 		return email;
 	}
 
-	public String getCarteira() {
+	public TipoCarteira getCarteira() {
 		return carteira;
+	}
+
+	public void setCarteira(TipoCarteira carteira) {
+		this.carteira = carteira;
 	}
 
 	public Carteira toModel(Cartao cartao) {

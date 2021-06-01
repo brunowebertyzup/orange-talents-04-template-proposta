@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.zupacademy.brunoweberty.propostazup.bloqueio.BloqueioFeignRequest;
 import br.com.zupacademy.brunoweberty.propostazup.bloqueio.BloqueioFeignResponse;
-import br.com.zupacademy.brunoweberty.propostazup.carteira.CarteiraRequest;
-import br.com.zupacademy.brunoweberty.propostazup.carteira.ResultadoCarteira;
+import br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal.CarteiraRequest;
+import br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal.ResultadoCarteira;
 import br.com.zupacademy.brunoweberty.propostazup.viagem.AvisoViagemRequest;
 import br.com.zupacademy.brunoweberty.propostazup.viagem.ResultadoAvisoViagem;
 
