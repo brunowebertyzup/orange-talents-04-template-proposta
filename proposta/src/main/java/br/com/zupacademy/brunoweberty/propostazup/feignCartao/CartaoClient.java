@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.zupacademy.brunoweberty.propostazup.bloqueio.BloqueioFeignRequest;
 import br.com.zupacademy.brunoweberty.propostazup.bloqueio.BloqueioFeignResponse;
+import br.com.zupacademy.brunoweberty.propostazup.carteira.CarteiraRequest;
+import br.com.zupacademy.brunoweberty.propostazup.carteira.ResultadoCarteira;
 import br.com.zupacademy.brunoweberty.propostazup.viagem.AvisoViagemRequest;
 import br.com.zupacademy.brunoweberty.propostazup.viagem.ResultadoAvisoViagem;
 
@@ -25,5 +27,8 @@ public interface CartaoClient {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "{id}/avisos", produces = "application/json")
     public ResultadoAvisoViagem emitirAviso(@PathVariable("id") String numeroCartao, @RequestBody AvisoViagemRequest request);
+	
+	@RequestMapping(method = RequestMethod.POST, value = "{id}/carteiras", produces = "application/json")
+    public ResultadoCarteira associarCarteira(@PathVariable("id") String numeroCartao, @RequestBody CarteiraRequest request);
 }
 

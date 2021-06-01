@@ -19,6 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/v1/propostas/**").hasAuthority("SCOPE_propostas")
                 .antMatchers(HttpMethod.POST, "/v1/bloqueios**").hasAuthority("SCOPE_propostas")
                 .antMatchers(HttpMethod.POST, "/v1/viagens**").hasAuthority("SCOPE_propostas")
+                .antMatchers(HttpMethod.POST, "/v1/carteiras**").hasAuthority("SCOPE_propostas")
                 .anyRequest().authenticated()
                 .and().cors().disable().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
