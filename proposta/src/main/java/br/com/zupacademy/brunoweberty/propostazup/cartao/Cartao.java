@@ -3,6 +3,7 @@ package br.com.zupacademy.brunoweberty.propostazup.cartao;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 import br.com.zupacademy.brunoweberty.propostazup.biometria.Biometria;
 import br.com.zupacademy.brunoweberty.propostazup.bloqueio.Bloqueio;
+import br.com.zupacademy.brunoweberty.propostazup.seguranca.EncryptToDatabase;
 
 @Entity
 public class Cartao {
@@ -23,6 +26,7 @@ public class Cartao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank @Convert(converter = EncryptToDatabase.class)
 	private String numeroCartao;
 	
 	private String titular;
@@ -51,6 +55,10 @@ public class Cartao {
 
 	public String getNumeroCartao() {
 		return numeroCartao;
+	}
+	
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
 	}
 
 	public String getTitular() {

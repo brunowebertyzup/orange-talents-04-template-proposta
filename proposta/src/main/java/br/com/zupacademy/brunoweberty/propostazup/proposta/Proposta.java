@@ -2,6 +2,7 @@ package br.com.zupacademy.brunoweberty.propostazup.proposta;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.OneToOne;
 
 import br.com.zupacademy.brunoweberty.propostazup.cartao.Cartao;
 import br.com.zupacademy.brunoweberty.propostazup.feignProposta.AnaliseSolicitacaoRequest;
+import br.com.zupacademy.brunoweberty.propostazup.seguranca.EncryptToDatabase;
 
 @Entity
 public class Proposta {
@@ -22,6 +24,7 @@ public class Proposta {
 	
 	private String email;
 	
+	@Convert(converter = EncryptToDatabase.class)
 	private String documento;
 	
 	private String endereco;

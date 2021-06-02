@@ -15,7 +15,7 @@ import br.com.zupacademy.brunoweberty.propostazup.carteiraPaypal.ResultadoCartei
 import br.com.zupacademy.brunoweberty.propostazup.viagem.AvisoViagemRequest;
 import br.com.zupacademy.brunoweberty.propostazup.viagem.ResultadoAvisoViagem;
 
-@FeignClient(name = "cartoes", url = "${client.cartao}")
+@FeignClient(name = "cartoes", url = "http://localhost:8888/api/cartoes")
 @Component
 public interface CartaoClient {
 	
